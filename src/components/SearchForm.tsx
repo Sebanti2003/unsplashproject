@@ -18,7 +18,7 @@
 // export default SearchForm;
 import React from "react";
 
-const SearchForm = ({ searchTerm, changeinput, onSearch }) => {
+const SearchForm = ({ searchTerm, changeinput,onSearch}) => {
   return (
     <div className="flex items-center justify-between gap-1 md:gap-4 px-3 mb-5">
       <input
