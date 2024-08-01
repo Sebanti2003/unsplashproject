@@ -1,5 +1,7 @@
 // import React from "react";
 
+import React from "react";
+
 // const SearchForm = ({ searchTerm, changeinput}) => {
 //   return (
 //     <div className="flex items-center justify-between gap-1 md:gap-4 px-3 mb-5">
@@ -16,9 +18,16 @@
 // };
 
 // export default SearchForm;
-import React from "react";
-
-const SearchForm = ({ searchTerm, changeinput,onSearch}) => {
+interface SearchFormProps {
+  searchTerm: string;
+  changeinput: (value: string) => void;
+  onSearch: () => void;
+}
+const SearchForm: React.FC<SearchFormProps> = ({
+  searchTerm,
+  changeinput,
+  onSearch,
+}) => {
   return (
     <div className="flex items-center justify-between gap-1 md:gap-4 px-3 mb-5">
       <input
@@ -28,7 +37,10 @@ const SearchForm = ({ searchTerm, changeinput,onSearch}) => {
         placeholder="Search for images..."
         className="md:w-[90%] w-[75%] rounded-lg p-2 border-2 border-black"
       />
-      <button className="w-[20%] h-10 rounded-lg bg-blue-600 text-white" onClick={onSearch}>
+      <button
+        className="w-[20%] h-10 rounded-lg bg-blue-600 text-white"
+        onClick={onSearch}
+      >
         Search
       </button>
     </div>

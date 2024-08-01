@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
-
-const Gallery = ({ searchTerm }) => {
+interface Image {
+  urls: {
+    regular: string;
+  };
+}
+interface UnsplashResponse {
+  results: Image[];
+}
+interface GalleryProps {
+  searchTerm: string;
+}
+const Gallery: React.FC<GalleryProps> = ({ searchTerm }) => {
   const [queryTerm, setQueryTerm] = useState(searchTerm || "nature");
 
-  const fetchImages = async (search) => {
+  const fetchImages = async (search: string): Promise<UnsplashResponse> => {
     const url = `https://api.unsplash.com/search/photos?page=1&per_page=10&query=${search}`;
     try {
       const result = await axios.get(url, {
@@ -18,6 +28,7 @@ const Gallery = ({ searchTerm }) => {
       if (error instanceof Error) {
         console.log(error.message);
       }
+      return {} as UnsplashResponse;
     }
   };
 
